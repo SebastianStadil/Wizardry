@@ -14,12 +14,7 @@
     filter: alpha(opacity=50);
 }
 
-#skip-steps {
-	display: block;
+#tooltip-button {
 	float: right;
-	margin-top: 10px;
-}
-
-body {
-	overflow: hidden;
+	margin-top: 25px;
 }

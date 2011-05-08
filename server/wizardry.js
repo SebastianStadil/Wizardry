@@ -1,13 +1,3 @@
-// Load JS & CSS
-var serverUrl = "http://wizardryapp.com/server/";
-document.write('<link rel="stylesheet" type="text/css" href="' + serverUrl + 'ext-4.0.0/resources/css/ext-all.css">');
-document.write('<link rel="stylesheet" type="text/css" href="' + serverUrl + 'style.css">');
-loadScript(serverUrl + "ext-4.0.0/ext-all-debug.js", function() {
-	loadScript(serverUrl + "Spotlight.js", function() {
-		Ext.onReady(startApp);
-	});
-});
-
 // Params
 // Format is [id, trigger id, tooltip title, tooltip text]
 var	steps = [
@@ -15,6 +5,17 @@ var	steps = [
 	['answers', 'answers', 'Step 1', 'Click on this 1'],
 	['submit', 'submit', 'Step 2', 'Click on this 2']
 ];
+
+
+// Load JS & CSS
+var serverUrl = "http://wizardryapp.com/server/";
+loadCSS(serverUrl + 'ext-4.0.0/resources/css/ext-all.css');
+loadCSS(serverUrl + 'style.css');
+loadScript(serverUrl + "ext-4.0.0/ext-all-debug.js", function() {
+	loadScript(serverUrl + "Spotlight.js", function() {
+		Ext.onReady(startApp);
+	});
+});
 
 
 // Main function
@@ -35,7 +36,7 @@ function startApp() {
 				title: args[2],
 				autoShow: true,	
 				autoHide: false,
-				closable: true
+				closable: true,
 			});
 
 		} else {
@@ -93,3 +94,11 @@ function loadScript(sScriptSrc, callbackfunction)  {
 		oHead.appendChild(oScript);
 	}
 };
+
+function loadCSS(filename) {
+	var fileref = document.createElement("link");
+	fileref.setAttribute("rel", "stylesheet");
+	fileref.setAttribute("type", "text/css");
+	fileref.setAttribute("href", filename);
+	document.getElementsByTagName("head")[0].appendChild(fileref)
+}
