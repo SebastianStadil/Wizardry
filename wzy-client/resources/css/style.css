@@ -33,3 +33,8 @@ body {
     filter: alpha(opacity=50);
 }
 
+#skip-steps {
+	display: block;
+	float: right;
+	margin-top: 10px;
+}

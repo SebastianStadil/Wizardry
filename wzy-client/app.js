@@ -1,7 +1,8 @@
 // Load JS & CSS
-document.write('<link rel="stylesheet" type="text/css" href="ext-4.0.0/resources/css/ext-all.css">');
-loadScript("ext-4.0.0/ext-all-debug.js", function() {
-	loadScript("Spotlight.js", function() {
+var serverUrl = "http://wizardry/";
+document.write('<link rel="stylesheet" type="text/css" href="' + serverUrl + 'ext-4.0.0/resources/css/ext-all.css">');
+loadScript(serverUrl + "ext-4.0.0/ext-all-debug.js", function() {
+	loadScript(serverUrl + "Spotlight.js", function() {
 		Ext.onReady(startApp);
 	});
 });
@@ -29,21 +30,28 @@ function startApp() {
 			tooltip = Ext.create('Ext.tip.ToolTip', {
 				target: args[0],
 				anchor: "top",
-				html: args[3],
+				html: args[3] + "<br><a href='#' id='skip-steps'>Skip</a>",
 				title: args[2],
 				autoShow: true,	
 				autoHide: false,
-				closable: true,
+				closable: true
 			});
+
 		} else {
 			console.log(args[0]);
 			tooltip.setTarget(args[0]);
 			tooltip.setTitle(args[2]);
-			tooltip.update(args[3]);
+			tooltip.update(args[3] + "<br><a href='#' id='skip-steps'>Skip</a>");
 			tooltip.show();
 		}
+		Ext.get('skip-steps').on('click', function() {
+			spot.destroy();
+			tooltip.destroy();
+		});
 	}
 	
+	
+	// Add listener to alls to buttons
 	for (i = 0; i < steps.length - 1; i++) {
 		Ext.get(steps[i][1]).on('click', 
 			(function(x) {
@@ -54,13 +62,14 @@ function startApp() {
 		);
 	};
 	
+	// Destroy the spotlight and tooltip on the last step
 	Ext.get(steps[steps.length - 1][1]).on('click', function() {
 		spot.destroy();
 		tooltip.destroy();
 	});
 	
+	// Start with the first step
 	showStep(steps[0]);
-
 };
 
 //
