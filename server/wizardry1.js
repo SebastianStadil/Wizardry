@@ -25,13 +25,13 @@ function startApp() {
 	
 	function showStep(args) {
 		spot.show(args[0]);
-		
+		var textAdded = "<br><a href='#' id='next-steps'>Next</a> | <a href='#' id='skip-steps'>Skip</a>";
 		if (!tooltip) {
 			console.log("creating...");
 			tooltip = Ext.create('Ext.tip.ToolTip', {
 				target: args[0],
 				anchor: "top",
-				html: args[3] + "<br><a href='#' id='skip-steps'>Skip</a>",
+				html: args[3] + textAdded,
 				title: args[2],
 				autoShow: true,	
 				autoHide: false,
@@ -42,10 +42,14 @@ function startApp() {
 			console.log(args[0]);
 			tooltip.setTarget(args[0]);
 			tooltip.setTitle(args[2]);
-			tooltip.update(args[3] + "<br><a href='#' id='skip-steps'>Skip</a>");
+			tooltip.update(args[3] + textAdded);
 			tooltip.show();
 		}
 		Ext.get('skip-steps').on('click', function() {
+			spot.destroy();
+			tooltip.destroy();
+		});
+		Ext.get('next-steps').on('click', function() {
 			spot.destroy();
 			tooltip.destroy();
 		});
