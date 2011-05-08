@@ -1,5 +1,5 @@
 // Load JS & CSS
-var serverUrl = "http://wzy-server/";
+var serverUrl = "http://wizardryapp.com/server/";
 document.write('<link rel="stylesheet" type="text/css" href="' + serverUrl + 'ext-4.0.0/resources/css/ext-all.css">');
 document.write('<link rel="stylesheet" type="text/css" href="' + serverUrl + 'style.css">');
 loadScript(serverUrl + "ext-4.0.0/ext-all-debug.js", function() {
