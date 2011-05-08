@@ -22,8 +22,8 @@
     top: 0;
     left: 0;
 
-    -moz-opacity: 0.8;
-    opacity: 0.8;
-    filter: alpha(opacity=80);
+    -moz-opacity: 0.5;
+    opacity: 0.5;
+    filter: alpha(opacity=50);
 }
 

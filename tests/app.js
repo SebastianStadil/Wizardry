@@ -8,12 +8,21 @@ loadScript("ext-4.0.0/ext-all-debug.js", function() {
 
 // Params
 var	path = [
-	['box0', 'box0-trigger', 'Click on this'],
-	['box1', 'box1-trigger', 'Click on this'],
-	['box2', 'box2-trigger', 'Click on this'],
-	['box3', 'box3-trigger', 'Click on this']
+	['box0', 'box0-trigger', 'Step 0', 'Click on this 0', 'left'],
+	['box1', 'box1-trigger', 'Step 1', 'Click on this 1', 'right'],
+	['box2', 'box2-trigger', 'Step 2', 'Click on this 2', 'top'],
+	['box3', 'box3-trigger', 'Step 3', 'Click on this 3', 'bottom']
 ];
 
+function showToolTip(args) {
+	var params = Ext.apply({}, args, {
+		autoShow: true,
+		autoHide: false,
+		closable: true
+	});
+	console.log(params);
+	Ext.create('Ext.tip.ToolTip', params);
+}
 
 // Main function
 function startApp() {
@@ -24,6 +33,13 @@ function startApp() {
 			(function(x) {
 				return function() {
 					spot.show(path[x + 1][0]);
+					showToolTip({
+						target: path[x + 1][0],
+						anchor: path[x + 1][4],
+						html: path[x + 1][3],
+						title: path[x + 1][2]
+					});
+
 				};
 			})(i)
 		);
@@ -34,6 +50,17 @@ function startApp() {
 	});
 	
 	spot.show(path[0][0]);
+	showToolTip({
+		target: path[0][0],
+		anchor: path[0][4],
+		html: path[0][3],
+		title: path[0][2]
+	});
+	
+
+	Ext.QuickTips.init();
+
+
 };
 
 //
