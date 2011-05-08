@@ -1,0 +1,10 @@
+{% if all_wizards %}
+    <ul>
+    {% for wizard in all_wizards %}
+        <li><a href="/wizards/{{ wizard.id }}/">{{ wizard.tooltip_title }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No Wizards have been created.</p>
+{% endif %}
+<p>Add new wizard</p>
