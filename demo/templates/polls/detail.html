@@ -5,6 +5,8 @@
 		<script type="text/javascript" src="http://wizardryapp.com/wizardryapp_com/wizardry.js"></script>
 	</head>
 	<body style="padding:20px;">
+	    <div id="container">
+	       
 		<h1 id="question">{{ poll.question }}</h1>
 
 		{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
@@ -18,6 +20,7 @@
 			{% endfor %}</div>
 		<input type="submit" value="Vote" id="submit" />
 		</form>
+    </div>
 	</body>
 </html>
 
