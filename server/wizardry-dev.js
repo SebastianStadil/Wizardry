@@ -89,7 +89,6 @@ function startApp() {
 		}
 	}
 	
-	
 	// Add listener to alls to buttons
 	for (i = 0; i < steps.length - 1; i++) {
 		if (steps[i][1] != "") {
