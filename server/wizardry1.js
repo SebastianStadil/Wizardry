@@ -19,6 +19,33 @@ var	steps = [
 
 // Main function
 function startApp() {
+	
+	/*var conn = new Ext.data.Connection();
+	conn.request({
+		url: serverUrl + 'test',
+		method: 'GET',
+		params: {},
+		success: function(responseObject) {
+			alert(responseObject.responseText);
+		},
+		failure: function() {
+			alert("failure");
+		}
+	});*/
+	
+	Ext.Ajax.request({
+	    url: 'test-demo',
+	    params: {},
+	    success: function(response){
+	        var text = response.responseText;
+	        alert(text);
+	    },
+		failure: function() {
+			console.log("failure");
+		}
+	});
+	
+	
 	Ext.QuickTips.init();
 	var spot = Ext.create('Ext.ux.Spotlight');
 	var tooltip;
