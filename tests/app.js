@@ -7,59 +7,59 @@ loadScript("ext-4.0.0/ext-all-debug.js", function() {
 });
 
 // Params
-var	path = [
-	['box0', 'box0-trigger', 'Step 0', 'Click on this 0', 'left'],
-	['box1', 'box1-trigger', 'Step 1', 'Click on this 1', 'right'],
-	['box2', 'box2-trigger', 'Step 2', 'Click on this 2', 'top'],
-	['box3', 'box3-trigger', 'Step 3', 'Click on this 3', 'bottom']
+var	steps = [
+	['box0', 'box0-trigger', 'Step 0', 'Click on this 0'],
+	['box1', 'box1-trigger', 'Step 1', 'Click on this 1'],
+	['box2', 'box2-trigger', 'Step 2', 'Click on this 2'],
+	['box3', 'box3-trigger', 'Step 3', 'Click on this 3']
 ];
 
-function showToolTip(args) {
-	var params = Ext.apply({}, args, {
-		autoShow: true,
-		autoHide: false,
-		closable: true
-	});
-	console.log(params);
-	Ext.create('Ext.tip.ToolTip', params);
-}
 
 // Main function
 function startApp() {
+	Ext.QuickTips.init();
 	var spot = Ext.create('Ext.ux.Spotlight');
-
-	for (i = 0; i < (path.length - 1); i++) {
-		Ext.get(path[i][1]).on('click', 
+	var tooltip;
+	
+	function showStep(args) {
+		spot.show(args[0]);
+		
+		if (!tooltip) {
+			console.log("creating...");
+			tooltip = Ext.create('Ext.tip.ToolTip', {
+				target: args[0],
+				anchor: "top",
+				html: args[3],
+				title: args[2],
+				autoShow: true,	
+				autoHide: false,
+				closable: true,
+			});
+		} else {
+			console.log(args[0]);
+			tooltip.setTarget(args[0]);
+			tooltip.setTitle(args[2]);
+			tooltip.update(args[3]);
+			tooltip.show();
+		}
+	}
+	
+	for (i = 0; i < steps.length - 1; i++) {
+		Ext.get(steps[i][1]).on('click', 
 			(function(x) {
 				return function() {
-					spot.show(path[x + 1][0]);
-					showToolTip({
-						target: path[x + 1][0],
-						anchor: path[x + 1][4],
-						html: path[x + 1][3],
-						title: path[x + 1][2]
-					});
-
+					showStep(steps[x + 1]);
 				};
 			})(i)
 		);
 	};
-
-	Ext.get(path[path.length - 1][1]).on('click', function() {
+	
+	Ext.get(steps[steps.length - 1][1]).on('click', function() {
 		spot.destroy();
+		tooltip.destroy();
 	});
 	
-	spot.show(path[0][0]);
-	showToolTip({
-		target: path[0][0],
-		anchor: path[0][4],
-		html: path[0][3],
-		title: path[0][2]
-	});
-	
-
-	Ext.QuickTips.init();
-
+	showStep(steps[0]);
 
 };
 
