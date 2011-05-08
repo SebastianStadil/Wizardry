@@ -30,7 +30,7 @@ function startApp() {
 			console.log("creating...");
 			tooltip = Ext.create('Ext.tip.ToolTip', {
 				target: args[0],
-				anchor: "top",
+				anchor: "bottom",
 				html: args[3] + "<br><a href='#' id='skip-steps'>Skip</a>",
 				title: args[2],
 				autoShow: true,	
