@@ -1,5 +1,8 @@
 # Django settings for wizardry project.
 
+import os
+ROOT_PATH = os.path.dirname(__file__)
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -12,7 +15,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '/Users/sebastianstadil/Sites/Wizardry/wizardry.sqlite',                      # Or path to database file if using sqlite3.
+        'NAME': os.path.join(ROOT_PATH, 'wizardry.sqlite'),                      # Or path to database file if using sqlite3.
         'USER': '',                      # Not used with sqlite3.
         'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
@@ -56,7 +59,7 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = '/Users/sebastianstadil/Sites/Wizardry/wizardry/static/'
+STATIC_ROOT = os.path.join(ROOT_PATH, 'static')
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -106,7 +109,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-	"/Users/sebastianstadil/Sites/Wizardry/templates/"
+	os.path.join(ROOT_PATH, 'templates'),
 )
 
 INSTALLED_APPS = (
