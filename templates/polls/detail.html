@@ -1,24 +1,33 @@
-<html>
-	<head>
-		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-		<title>detail</title>
-		<script type="text/javascript" src="http://127.0.0.1:8000/json/"></script>
-	</head>
-	<body style="padding:20px;">
-		<h1 id="question">{{ poll.question }}</h1>
+{% extends "polls/layout.html" %}
 
-		{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+{% block title %}
+    {{ poll.question }}
+{% endblock %}
 
-		<form action="/polls/{{ poll.id }}/vote/" method="post">
-		<div id="answers">
-			{% csrf_token %}
-			{% for choice in poll.choice_set.all %}
-			    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
-			    <label for="choice{{ forloop.counter }}">{{ choice.choice }}</label><br />
-			{% endfor %}</div>
-		<input type="submit" value="Vote" id="submit" />
-		</form>
-	</body>
-</html>
+{% block stylesheets %}
+    <script src="http://127.0.0.1:8000/json" type="text/javascript" charset="utf-8"></script>
+    {{ block.super }}
+{% endblock %}
 
+{% block content %}
+	{% if error_message %}
+	    <p>
+	        <strong>{{ error_message }}</strong>
+	    </p>
+	{% endif %}
+    
+    <h1 id="question">{{ poll.question }}</h1>
+	<form action="/polls/{{ poll.id }}/vote/" method="post">
+    	{% csrf_token %}
+	    <ul id="answers">
+	    	{% for choice in poll.choice_set.all %}
+	    	<li>
+	    	    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
+	    	    <label for="choice{{ forloop.counter }}">{{ choice.choice }}</label>
+	    	</li>
+	    	{% endfor %}
+	    </ul>
+	    <input type="submit" value="Vote" id="submit" class="shadow" />
+	</form>
+{% endblock %}
 

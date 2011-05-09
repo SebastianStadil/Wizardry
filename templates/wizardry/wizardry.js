@@ -10,12 +10,12 @@
 {% endif %}
 
 // Load JS & CSS
-var serverUrl = "http://127.0.0.1:8000/";
-loadCSS(serverUrl + 'static/ext-4.0.0/resources/css/ext-all.css');
-loadCSS(serverUrl + 'static/style.css');
+var serverUrl = "http://127.0.0.1:8000/static/";
+loadCSS(serverUrl + 'ext-4.0.0/resources/css/ext-standard.css');
+loadCSS(serverUrl + 'style.css');
 
-loadScript(serverUrl + "static/ext-4.0.0/ext-all-debug.js", function() {
-	loadScript(serverUrl + "static/Spotlight.js", function() {
+loadScript(serverUrl + "ext-4.0.0/ext-all-debug.js", function() {
+	loadScript(serverUrl + "Spotlight.js", function() {
 		Ext.onReady(startApp);
 	});
 });
@@ -81,12 +81,9 @@ function startApp() {
 			Ext.get('tooltip-button').on('click', function() {
 				showStep(i + 1);
 			});
-		} else {
-			tooltipButton.setText("OK");
+		} else if (args[1] == "") {
+			tooltipButton.setText("OK!");
 			Ext.get('tooltip-button').on('click', function() {
-				terminateWizard();
-			});
-			Ext.get('terminate-steps').on('click', function() {
 				terminateWizard();
 			});
 		}
