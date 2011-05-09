@@ -2,7 +2,7 @@
 {% if all_wizards %}
 	var	steps = [
 		{% for wizard in all_wizards %}
-			['{{ wizard.target_id }}', ' {{ wizard.trigger_id }}', ' {{ wizard.tooltip_title }}', ' {{ wizard.tooltip_text }}'],
+			['{{ wizard.target_id }}', '{{ wizard.trigger_id }}', ' {{ wizard.tooltip_title }}', ' {{ wizard.tooltip_text }}'],
 		{% endfor %}
 	];
 {% else %}
