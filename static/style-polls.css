@@ -1,0 +1,47 @@
+body {
+	font-family: georgia, serif;
+	font-size: 1.3em;
+	background: #ddd;
+	padding-top: 30px;
+}
+
+#container {
+	background: white;
+	width: 600px;
+	margin: 0 auto;
+	border: #555 1px solid;
+	padding: 20px;
+}
+
+h1 {
+	text-align: center;
+	padding: 10px;
+	margin-bottom: 30px;
+}
+
+#answers {
+	list-style: none;
+	line-height: 30px;
+	padding: 10px;
+}
+
+#submit {
+	display: block;
+	background: url(/static/validate.png) no-repeat 15px center;
+	line-height: 32px;
+	border: none;
+	font-family: georgia, serif;
+	font-size: 1.3em;
+	margin-left: 240px;
+	padding: 10px 10px 10px 60px;
+}
+
+#submit:hover {
+	cursor: pointer;
+}
+
+.shadow {
+	-moz-box-shadow: 0 0 5px #ccc;
+  	-webkit-box-shadow: 0 0 5px #ccc;
+  	box-shadow: 0 0 5px #ccc;
+}
